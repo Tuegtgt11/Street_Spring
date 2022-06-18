@@ -1,10 +1,11 @@
 package com.example.street_spring.entity;
-
-import com.example.street_spring.entity.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -15,10 +16,12 @@ import java.util.Set;
 @Entity
 @Builder
 @Table(name = "districts")
-public class District extends BaseEntity {
+public class District {
     @Id
     private String id;
     private String name;
-    @OneToMany(mappedBy = "district")
-    private Set<Street> streets;
+    @CreationTimestamp
+    private Date createdAt;
+    @UpdateTimestamp
+    private Date updatedAt;
 }
